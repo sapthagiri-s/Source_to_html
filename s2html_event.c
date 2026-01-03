@@ -216,7 +216,6 @@ pevent_t *pstate_idle_handler(FILE *fd, int ch)
 			}
 			else //	multi line comment begin
 			{
-				printf("Multi line comment begin\n");
 				state = PSTATE_MULTI_LINE_COMMENT;
 				pevent_data.data[event_data_idx++] = pre_ch;
 				pevent_data.data[event_data_idx++] = ch;
@@ -428,9 +427,6 @@ pevent_t *pstate_multi_line_comment_handler(FILE *fd, int ch)
 #endif
 			pre_ch = ch;
 			pevent_data.data[event_data_idx++] = ch;
-			printf("\nMulti line comment End : */\n");
-			pevent_data.data[event_data_idx] = '\0';
-			printf("Event Data: %s\n", pevent_data.data);
 			set_parser_event(PSTATE_IDLE, PEVENT_MULTI_LINE_COMMENT);
 			return &pevent_data;
 		}
